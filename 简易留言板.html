@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>简易留言板</title>
+<style type="text/css">
+	.mess{
+		background-color:#6CC;
+		margin-top: 50px;
+        height: 390px;
+        border: 1px solid #EEEEEE;
+	    border-radius:25px;
+        box-shadow: 5px 5px 10px #69F;
+        padding: 50px;
+	}
+	h1{
+		color:#6CC;
+	}
+</style>
+<script>
+window.onload = function(){
+ var oMsg = document.getElementById("msg");
+ var oBtn = document.getElementById("btn");
+ var oMsg_c = document.getElementById("msg_c");
+ var oUl = document.createElement("ul");
+ oMsg_c.appendChild(oUl);
+ oBtn.onclick = function(){
+  var sVal = oMsg.value;
+  var oli = document.createElement("li");
+  oli.innerHTML = sVal + " <span>删除</span>";
+  var oli1 = oUl.getElementsByTagName("li");
+  if(oli1.length>0){
+   oUl.insertBefore(oli,oli1[0]);
+  }else{
+   oUl.appendChild(oli);
+  }
+  oMsg.value='';
+   var oSpan = document.getElementsByTagName("span");
+   for(var i=0; i<oSpan.length; i++){
+    oSpan[i].onclick = function(){
+     oUl.removeChild(this.parentNode);
+    }
+   }
+ }
+} 
+</script>
+</head>
+<body>
+<h1>简易留言板</h1>
+<div class="mess">
+  <input id="msg" type="text" size="40" value="">
+  <input id="btn" type="button" value="留言">
+  <div id="msg_c"></div>
+</div>
+</body>
+</html>
